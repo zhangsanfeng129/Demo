@@ -240,18 +240,18 @@
     
            
          //模糊查询
-         //$('#SeachName').on('click', function () {
-         //    var demoReload = $('#demoReload');
-         //    table.reload('tableReload', {
-         //        page: {
-         //            curr: 1 //重新从第 1 页开始
-         //        }
-         //         ,where: {
-         //             UserName: demoReload.val()
+         $('#SeachName').on('click', function () {
+             var demoReload = $('#demoReload');
+             table.reload('tableReload', {
+                 page: {
+                     curr: 1 //重新从第 1 页开始
+                 }
+                  ,where: {
+                      UserName: demoReload.val()
                        
-         //         }
-         //    }, 'data');
-         //})
+                  }
+             }, 'data');
+         })
      
          //监听点击事件
          //执行删除
