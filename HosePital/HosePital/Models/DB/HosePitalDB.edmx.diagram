@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b04f5fbebd194df8aa14ce942526f013" Name="关系图1">
+        <EntityTypeShape EntityType="HoseDBModel.db_CType" Width="1.5" PointX="5.875" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_INPUT" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_MANAGER" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_PRODUCTTYPE" Width="1.5" PointX="7.625" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_PTYPE" Width="1.5" PointX="9.125" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_ROOM" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_ROOMTYPE" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.db_WORKER" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HoseDBModel.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="HoseDBModel.FK_db_INPUT_db_CType" ManuallyRouted="false" />
+        <AssociationConnector Association="HoseDBModel.FK_db_INPUT_db_ROOM" ManuallyRouted="false" />
+        <AssociationConnector Association="HoseDBModel.FK_db_INPUT_db_WORKER" ManuallyRouted="false" />
+        <AssociationConnector Association="HoseDBModel.FK_db_PRODUCTTYPE_db_PTYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="HoseDBModel.FK_db_ROOM_db_ROOMTYPE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
