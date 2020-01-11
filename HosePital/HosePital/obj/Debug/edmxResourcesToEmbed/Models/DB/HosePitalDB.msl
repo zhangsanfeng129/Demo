@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HoseDBModelStoreContainer" CdmEntityContainer="HoseDBEntities">
+    <EntitySetMapping Name="db_CType">
+      <EntityTypeMapping TypeName="HoseDBModel.db_CType">
+        <MappingFragment StoreEntitySet="db_CType">
+          <ScalarProperty Name="CTypeID" ColumnName="CTypeID" />
+          <ScalarProperty Name="CTypeName" ColumnName="CTypeName" />
+          <ScalarProperty Name="CDiscount" ColumnName="CDiscount" />
+          <ScalarProperty Name="Fine" ColumnName="Fine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_INPUT">
+      <EntityTypeMapping TypeName="HoseDBModel.db_INPUT">
+        <MappingFragment StoreEntitySet="db_INPUT">
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="InID" ColumnName="InID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CTypeID" ColumnName="CTypeID" />
+          <ScalarProperty Name="CustomerInDate" ColumnName="CustomerInDate" />
+          <ScalarProperty Name="CustomerOutDate" ColumnName="CustomerOutDate" />
+          <ScalarProperty Name="RoomNID" ColumnName="RoomNID" />
+          <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+          <ScalarProperty Name="CustomerIDNumber" ColumnName="CustomerIDNumber" />
+          <ScalarProperty Name="CustomerPeoper" ColumnName="CustomerPeoper" />
+          <ScalarProperty Name="CustomerSex" ColumnName="CustomerSex" />
+          <ScalarProperty Name="CustomerPrice" ColumnName="CustomerPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_MANAGER">
+      <EntityTypeMapping TypeName="HoseDBModel.db_MANAGER">
+        <MappingFragment StoreEntitySet="db_MANAGER">
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="ManagerPassword" ColumnName="ManagerPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_PRODUCTTYPE">
+      <EntityTypeMapping TypeName="HoseDBModel.db_PRODUCTTYPE">
+        <MappingFragment StoreEntitySet="db_PRODUCTTYPE">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductImg" ColumnName="ProductImg" />
+          <ScalarProperty Name="PTypeID" ColumnName="PTypeID" />
+          <ScalarProperty Name="ProductCount" ColumnName="ProductCount" />
+          <ScalarProperty Name="ProductPut" ColumnName="ProductPut" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_PTYPE">
+      <EntityTypeMapping TypeName="HoseDBModel.db_PTYPE">
+        <MappingFragment StoreEntitySet="db_PTYPE">
+          <ScalarProperty Name="PTypeID" ColumnName="PTypeID" />
+          <ScalarProperty Name="PTypeName" ColumnName="PTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_ROOM">
+      <EntityTypeMapping TypeName="HoseDBModel.db_ROOM">
+        <MappingFragment StoreEntitySet="db_ROOM">
+          <ScalarProperty Name="RoomNID" ColumnName="RoomNID" />
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="RoomNume" ColumnName="RoomNume" />
+          <ScalarProperty Name="RoomImage" ColumnName="RoomImage" />
+          <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+          <ScalarProperty Name="RoomStat" ColumnName="RoomStat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_ROOMTYPE">
+      <EntityTypeMapping TypeName="HoseDBModel.db_ROOMTYPE">
+        <MappingFragment StoreEntitySet="db_ROOMTYPE">
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+          <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="db_WORKER">
+      <EntityTypeMapping TypeName="HoseDBModel.db_WORKER">
+        <MappingFragment StoreEntitySet="db_WORKER">
+          <ScalarProperty Name="WorkerPhone" ColumnName="WorkerPhone" />
+          <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+          <ScalarProperty Name="WorkerName" ColumnName="WorkerName" />
+          <ScalarProperty Name="WorkerSex" ColumnName="WorkerSex" />
+          <ScalarProperty Name="WorkerIDNumber" ColumnName="WorkerIDNumber" />
+          <ScalarProperty Name="WorkerPosition" ColumnName="WorkerPosition" />
+          <ScalarProperty Name="WorkerWage" ColumnName="WorkerWage" />
+          <ScalarProperty Name="WorkerPassword" ColumnName="WorkerPassword" />
+          <ScalarProperty Name="WorkerImage" ColumnName="WorkerImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="HoseDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

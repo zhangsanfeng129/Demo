@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HoseDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HoseDBModelStoreContainer">
+    <EntitySet Name="db_CType" EntityType="HoseDBModel.Store.db_CType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_INPUT" EntityType="HoseDBModel.Store.db_INPUT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_MANAGER" EntityType="HoseDBModel.Store.db_MANAGER" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_PRODUCTTYPE" EntityType="HoseDBModel.Store.db_PRODUCTTYPE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_PTYPE" EntityType="HoseDBModel.Store.db_PTYPE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_ROOM" EntityType="HoseDBModel.Store.db_ROOM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_ROOMTYPE" EntityType="HoseDBModel.Store.db_ROOMTYPE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="db_WORKER" EntityType="HoseDBModel.Store.db_WORKER" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="HoseDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_db_INPUT_db_CType" Association="HoseDBModel.Store.FK_db_INPUT_db_CType">
+      <End Role="db_CType" EntitySet="db_CType" />
+      <End Role="db_INPUT" EntitySet="db_INPUT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_db_INPUT_db_ROOM" Association="HoseDBModel.Store.FK_db_INPUT_db_ROOM">
+      <End Role="db_ROOM" EntitySet="db_ROOM" />
+      <End Role="db_INPUT" EntitySet="db_INPUT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_db_INPUT_db_WORKER" Association="HoseDBModel.Store.FK_db_INPUT_db_WORKER">
+      <End Role="db_WORKER" EntitySet="db_WORKER" />
+      <End Role="db_INPUT" EntitySet="db_INPUT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_db_PRODUCTTYPE_db_PTYPE" Association="HoseDBModel.Store.FK_db_PRODUCTTYPE_db_PTYPE">
+      <End Role="db_PTYPE" EntitySet="db_PTYPE" />
+      <End Role="db_PRODUCTTYPE" EntitySet="db_PRODUCTTYPE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_db_ROOM_db_ROOMTYPE" Association="HoseDBModel.Store.FK_db_ROOM_db_ROOMTYPE">
+      <End Role="db_ROOMTYPE" EntitySet="db_ROOMTYPE" />
+      <End Role="db_ROOM" EntitySet="db_ROOM" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="db_CType">
+    <Key>
+      <PropertyRef Name="CTypeID" />
+    </Key>
+    <Property Name="CTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CDiscount" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="Fine" Type="decimal" Nullable="false" Scale="2" />
+  </EntityType>
+  <EntityType Name="db_INPUT">
+    <Key>
+      <PropertyRef Name="InID" />
+    </Key>
+    <Property Name="InID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="CTypeID" Type="int" Nullable="false" />
+    <Property Name="CustomerInDate" Type="date" Nullable="false" />
+    <Property Name="CustomerOutDate" Type="date" Nullable="false" />
+    <Property Name="RoomNID" Type="int" Nullable="false" />
+    <Property Name="WorkerID" Type="int" Nullable="false" />
+    <Property Name="CustomerIDNumber" Type="nvarchar" MaxLength="19" />
+    <Property Name="CustomerPeoper" Type="int" Nullable="false" />
+    <Property Name="CustomerSex" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="CustomerPrice" Type="decimal" Scale="2" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="30" />
+    <Property Name="CustomerPhone" Type="nvarchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="db_MANAGER">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ManagerName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="ManagerPassword" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="db_PRODUCTTYPE">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="ProductPrice" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="ProductImg" Type="nvarchar" MaxLength="50" />
+    <Property Name="PTypeID" Type="int" Nullable="false" />
+    <Property Name="ProductCount" Type="int" Nullable="false" />
+    <Property Name="ProductPut" Type="int" />
+  </EntityType>
+  <EntityType Name="db_PTYPE">
+    <Key>
+      <PropertyRef Name="PTypeID" />
+    </Key>
+    <Property Name="PTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PTypeName" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="db_ROOM">
+    <Key>
+      <PropertyRef Name="RoomNID" />
+    </Key>
+    <Property Name="RoomNID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="RoomNume" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoomImage" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoomPrice" Type="decimal" Scale="2" />
+    <Property Name="RoomStat" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="db_ROOMTYPE">
+    <Key>
+      <PropertyRef Name="RoomID" />
+    </Key>
+    <Property Name="RoomID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoomType" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="RoomPrice" Type="decimal" Nullable="false" Scale="2" />
+  </EntityType>
+  <EntityType Name="db_WORKER">
+    <Key>
+      <PropertyRef Name="WorkerID" />
+    </Key>
+    <Property Name="WorkerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="WorkerName" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="WorkerSex" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="WorkerIDNumber" Type="nvarchar" Nullable="false" MaxLength="18" />
+    <Property Name="WorkerPosition" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="WorkerWage" Type="decimal" Nullable="false" Scale="2" />
+    <Property Name="WorkerPassword" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="WorkerImage" Type="nvarchar" MaxLength="50" />
+    <Property Name="WorkerPhone" Type="nvarchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_db_INPUT_db_CType">
+    <End Role="db_CType" Type="HoseDBModel.Store.db_CType" Multiplicity="1" />
+    <End Role="db_INPUT" Type="HoseDBModel.Store.db_INPUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="db_CType">
+        <PropertyRef Name="CTypeID" />
+      </Principal>
+      <Dependent Role="db_INPUT">
+        <PropertyRef Name="CTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_db_INPUT_db_ROOM">
+    <End Role="db_ROOM" Type="HoseDBModel.Store.db_ROOM" Multiplicity="1" />
+    <End Role="db_INPUT" Type="HoseDBModel.Store.db_INPUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="db_ROOM">
+        <PropertyRef Name="RoomNID" />
+      </Principal>
+      <Dependent Role="db_INPUT">
+        <PropertyRef Name="RoomNID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_db_INPUT_db_WORKER">
+    <End Role="db_WORKER" Type="HoseDBModel.Store.db_WORKER" Multiplicity="1" />
+    <End Role="db_INPUT" Type="HoseDBModel.Store.db_INPUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="db_WORKER">
+        <PropertyRef Name="WorkerID" />
+      </Principal>
+      <Dependent Role="db_INPUT">
+        <PropertyRef Name="WorkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_db_PRODUCTTYPE_db_PTYPE">
+    <End Role="db_PTYPE" Type="HoseDBModel.Store.db_PTYPE" Multiplicity="1" />
+    <End Role="db_PRODUCTTYPE" Type="HoseDBModel.Store.db_PRODUCTTYPE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="db_PTYPE">
+        <PropertyRef Name="PTypeID" />
+      </Principal>
+      <Dependent Role="db_PRODUCTTYPE">
+        <PropertyRef Name="PTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_db_ROOM_db_ROOMTYPE">
+    <End Role="db_ROOMTYPE" Type="HoseDBModel.Store.db_ROOMTYPE" Multiplicity="1" />
+    <End Role="db_ROOM" Type="HoseDBModel.Store.db_ROOM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="db_ROOMTYPE">
+        <PropertyRef Name="RoomID" />
+      </Principal>
+      <Dependent Role="db_ROOM">
+        <PropertyRef Name="RoomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
