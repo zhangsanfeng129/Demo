@@ -1,0 +1,338 @@
+﻿@{
+    ViewBag.Title = "Exmpress";
+    Layout = "~/Views/_Layout/_Layout.cshtml";
+}
+@*表格按钮*@
+
+<div class="demoTable">
+    搜索姓名：
+  <div class="layui-inline">
+      <input class="layui-input" name="UserName" id="demoReload" autocomplete="off">
+  </div>
+    <button id="SeachName" class="layui-btn" data-type="reload">搜索</button>
+    <button id="deletes" class="layui-btn" data-type="reload">删除</button>
+</div>
+@*</form>*@
+@*<%--表格--%>*@
+<table id="demo" lay-filter="idTest"></table>
+@*表格操作*@
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="eyes"><i class="layui-icon layui-icon-circle">查看</i></a>
+    <a class="layui-btn layui-btn-xs edit" lay-event="edit"><i class="layui-icon layui-icon-edit">编辑</i></a>
+
+</script>
+
+
+@*预览/修改*@
+<div id="edit" style="display: none">
+    <form class="layui-form" action="" lay-filter="formTest">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="EName" lay-verify="required" placeholder="请输员工姓名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">身份证号</label>
+            <div class="layui-input-block">
+                <input type="text" name="ENameNumber" lay-verify="identity" placeholder="请输员工身份证号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">工资</label>
+            <div class="layui-input-block">
+                <input type="text" name="ENamePage" lay-verify="required" placeholder="请输员工工资" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">密码格式大于5个字符小于10个</div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <select name="ENamePositon" lay-verify="required">
+                    <option value=""></option>
+                    <option value="普通员工">普通员工</option>
+                    <option value="经理">经理</option>
+                    <option value="食品经理">食品经理</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="男" title="男">
+                <input type="radio" name="sex" value="女" title="女" checked>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn btns" lay-submit="Sub_Mit" lay-filter="Sub_Mit" id="btn">修改/保存</button>
+                <button type="reset" class="layui-btn layui-btn-primary">取消</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<script src="~/Js/Layui/js/layui/layui.js"></script>
+
+<script>
+    layui.use(['element', 'jquery', 'table', 'layer', 'form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var table = layui.table;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        //员工表格 
+
+
+        table.render({
+        elem: '#demo'//渲染
+      , id: 'idTest'
+      , height: 400//高度
+      , url: '/Defalut/Exmpre' //数据接口
+      , page: true //开启分页
+      , limit: 5
+      , limits: [5, 10, 20, 30]
+       , method: 'post'
+      , parseData: function (res) {//将原始数据解析成 table 组件所规定的数据
+
+          return {
+              "code": 0,//解析接口状态
+              "msg": "成功",//解析提示文本
+              "count": res.total,//解析数据长度
+              data: res.data//解析数据列表
+
+          }
+
+      }
+    , cols: [[ //表头
+
+          { type: 'checkbox', width: 50 }
+      , { field: 'WorkerID', title: '编号', width: 100, sort: true }
+    , { field: 'WorkerName', title: '员工姓名', width: 100 }
+    , { field: 'WorkerSex', title: '性别', width: 100, sort: true }
+    , { field: 'WorkerIDNumber', title: '员工身份证号', width: 100 }
+    , { field: 'WorkerPosition', title: '职位', width: 177 }
+    , { field: 'WorkerWage', title: '工资', width: 100, sort: true }
+    , { field: 'WorkerPassword', title: '密码', width: 100, sort: true }
+    , { fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo' }
+//, { field: 'WorkerImage', title: '图像', width: 80 }
+    ]],
+            request: {
+                pageName: 'page' // 页码的参数名称，默认：page
+                 , limitName: 'limit' //每页数据量的参数名，默认：limit
+            },
+            id: 'tableReload'
+
+        });
+
+
+        //预览表格中的操作
+        //监听表格中的工具栏
+        table.on('tool(idTest)', function (obj) {
+            var data = obj.data;
+            //预览效果
+            if (obj.event === 'eyes') {
+
+                layer.open({//打开弹框
+                    offset: '100px',
+                    shade: 0,
+                    title: '预览',
+                    area: ['600px', '500px'],
+                    type: 1,
+                    content: $("#edit")
+
+
+                });
+
+                form.val("formTest", {
+                    "EName": data.WorkerName
+                   , "ENameNumber": data.WorkerIDNumber
+                   , "ENamePage": data.WorkerWage
+                   , "password": data.WorkerPassword
+                   , "ENamePositon": data.WorkerPosition
+                   , "sex": data.WorkerSex
+                });
+
+            }
+            else if (obj.event === 'edit') {//编辑
+                //表单赋值
+                var jso = JSON.stringify(data);
+                layer.open({//打开弹框
+                    shade: 0,
+                    offset: '100px',
+                    title: '编辑信息',
+                    area: ['600px', '500px'],
+                    type: 1,
+                    content: $("#edit")
+                });
+                form.val("formTest", {
+                    "EName": data.WorkerName
+                   , "ENameNumber": data.WorkerIDNumber
+                   , "ENamePage": data.WorkerWage
+                   , "password": data.WorkerPassword
+                   , "ENamePositon": data.WorkerPosition
+                   , "sex": data.WorkerSex
+                });
+                //编辑的表单提交
+                form.on('submit(Sub_Mit)', function (FormData) {
+
+
+                    $.ajax({
+                        url: '/Defalut/Edities?EditID=' + data.WorkerID,
+                        type: 'post',
+                        data: FormData.field,
+                        cache: false,
+                        async: false,
+                        success: function (result) {
+                            if (res.code == 0) {
+
+                                table.reload('tableReload', {
+                                    url: '/Defalut/Exmpre'
+                                });//表格重载
+                                layer.alert(result.msg, {
+                                    icon: 1,
+                                    skin: 'layui-layer-lan'
+                                  , closeBtn: 0
+                                   , anim: 4 //动画类型
+                                });
+                                layer.closeAll();
+
+                            }
+                            else {
+                                layer.alert(result.msg, {
+                                    icon: 1,
+                                    skin: 'layui-layer-lan'
+                                 , closeBtn: 0
+                                  , anim: 4 //动画类型
+                                });
+                            }
+                        }
+                    })
+                    return false;
+
+                    //var filed_id = data.WorkerID;
+                    //axios.post('/Defalut/Edit', {
+                    //    filed_id: filed_id,
+
+                });
+
+            }
+
+            //预览的大括号
+        });
+
+
+
+
+        //模糊查询
+        $('#SeachName').on('click', function () {
+            var demoReload = $('#demoReload');
+            table.reload('tableReload', {
+              
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                 , where: {
+                     UserName: demoReload.val()
+
+                 }
+            }, 'data');
+         
+        })
+
+        //监听点击事件
+        //执行删除
+
+        $('#deletes').on('click', function () {
+
+            var checkStatus = table.checkStatus("tableReload");//获取数据
+            var data = checkStatus.data;
+            console.log(data);
+            if (data.length == 0) {
+                top.layer.alert('您没有选中数据', {
+                    skin: 'layui-layer-lan'
+                         , closeBtn: 0
+                          , anim: 3 //动画类型
+                });
+            }
+            else
+                //询问
+                top.layer.confirm('您确定要删除你可爱的员工吗？', {
+                    btn: ['忍痛割爱', '还是留着吧'] //按钮
+                }, function () {
+                    //确定删除  
+                    var post_detail = {
+                        detail: []
+                    };//放一个空数组
+                    post_detail.detail.push("WorkerID");//将id放入数组
+                    for (var i = 0; i < data.length; i++) {//遍历数组
+                        post_detail['detail[' + i + ']'] = data[i].WorkerID;
+                    }
+
+                    $.ajax({
+                        url: '/Defalut/Detail',
+
+                        type: 'post',
+                        data: post_detail,
+                        cache: false,
+                        success: function (res) {
+                            if (res.code == 0) {
+                                table.reload('tableReload', {
+                                    url: '/Defalut/Exmpre'
+                                });//表格重载
+                                top.layer.alert(res.msg, {
+                                    icon: 1,
+                                    skin: 'layui-layer-lan'
+                                  , closeBtn: 0
+                                   , anim: 4 //动画类型
+                                });
+
+                            }
+                            else {
+                                top.layer.alert(res.msg, {
+                                    icon: 5,
+                                    skin: 'layui-layer-lan'
+                                  , closeBtn: 0
+                                 , anim: 4 //动画类型
+                                });
+                            }
+                        }
+
+                    });
+
+
+                }, function () {
+                    //取消删除
+                    layer.msg('拜拜', {
+                        time: 20000, //20s后自动关闭
+
+                    });
+                });
+
+        })
+
+
+
+
+    })
+
+
+</script>
